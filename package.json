@@ -5,14 +5,14 @@
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "generate-pwa-assets": "pwa-assets-generator"
   },
-  "homepage": "https://fuadaslam.github.io/event-reg",
+  "homepage": "https://fuadaslam.github.io/EventReg",
   "dependencies": {
     "file-saver": "^2.0.5",
     "google-spreadsheet": "^4.1.1",
