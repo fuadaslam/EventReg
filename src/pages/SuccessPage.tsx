@@ -114,46 +114,8 @@ const SuccessPage: React.FC = () => {
           disabled={!badgeImage}
         >
           <Share2 className="h-4 w-4 mr-2" />
-          Share My Badge
+          Share on Social Media
         </button>
-
-        <div className="flex flex-col gap-2 mt-2">
-          <button
-            className="btn-outline w-full flex items-center justify-center"
-            disabled={!badgeImage}
-            onClick={() => {
-              const url = `https://wa.me/?text=I'm%20participating%20in%20the%20event!%20Check%20out%20my%20badge%3A%20${encodeURIComponent(
-                badgeImage || ""
-              )}`;
-              window.open(url, "_blank");
-            }}
-          >
-            <span className="mr-2">🟢</span> Share on WhatsApp
-          </button>
-          <button
-            className="btn-outline w-full flex items-center justify-center"
-            disabled={!badgeImage}
-            onClick={() => {
-              const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                badgeImage || ""
-              )}`;
-              window.open(url, "_blank");
-            }}
-          >
-            <span className="mr-2">🔵</span> Share on Facebook
-          </button>
-          <button
-            className="btn-outline w-full flex items-center justify-center"
-            disabled={!badgeImage}
-            onClick={() => {
-              alert(
-                "Instagram does not support direct web sharing. Please download your badge and upload it manually to Instagram."
-              );
-            }}
-          >
-            <span className="mr-2">🟣</span> Share on Instagram
-          </button>
-        </div>
 
         <button
           onClick={() => navigate("/")}
