@@ -4,6 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/EventReg/',
   plugins: [
     react(),
     VitePWA({
@@ -17,6 +18,7 @@ export default defineConfig({
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'portrait',
+        start_url: '/EventReg/',
         icons: [
           {
             src: 'pwa-192x192.png',
