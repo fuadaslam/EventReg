@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode } from "react";
 
 export interface UserRegistrationData {
   name: string;
@@ -10,6 +10,7 @@ export interface UserRegistrationData {
   area: string;
   city: string;
   state: string;
+  panchayat: string;
 }
 
 interface AppContextType {
@@ -24,21 +25,25 @@ interface AppContextType {
 }
 
 const defaultRegistrationData: UserRegistrationData = {
-  name: '',
-  phone: '',
-  email: '',
-  gender: '',
-  unit: '',
-  locality: '',
-  area: '',
-  city: '',
-  state: '',
+  name: "",
+  phone: "",
+  email: "",
+  gender: "",
+  unit: "",
+  locality: "",
+  area: "",
+  city: "",
+  state: "",
+  panchayat: "",
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [registrationData, setRegistrationData] = useState<UserRegistrationData>(defaultRegistrationData);
+export const AppProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [registrationData, setRegistrationData] =
+    useState<UserRegistrationData>(defaultRegistrationData);
   const [userPhoto, setUserPhoto] = useState<string | null>(null);
   const [badgeImage, setBadgeImage] = useState<string | null>(null);
   const [isOffline, setIsOffline] = useState<boolean>(false);
@@ -47,16 +52,16 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   React.useEffect(() => {
     const handleOnline = () => setIsOffline(false);
     const handleOffline = () => setIsOffline(true);
-    
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
-    
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
     // Check initial state
     setIsOffline(!navigator.onLine);
-    
+
     return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
     };
   }, []);
 
@@ -81,7 +86,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 export const useAppContext = (): AppContextType => {
   const context = useContext(AppContext);
   if (context === undefined) {
-    throw new Error('useAppContext must be used within an AppProvider');
+    throw new Error("useAppContext must be used within an AppProvider");
   }
   return context;
 };

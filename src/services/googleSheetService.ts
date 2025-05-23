@@ -1,24 +1,41 @@
 import { UserRegistrationData } from '../context/AppContext';
 
-// This is a mock implementation that would be replaced with actual Google Sheet API integration
+// Replace this URL with your Google Apps Script web app URL after deployment
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxm8oBSMqbN8vNTmX5fcsb9MkW-9YzNctL-jmJxycULcNGyh11AanUpccu20Ard50WZ/exec';
+
 export const saveToGoogleSheet = async (data: UserRegistrationData & { 
   badgeTemplate: string;
   photoUploaded: boolean;
 }): Promise<boolean> => {
-  console.log('Saving to Google Sheet:', data);
-  
-  // In a real application, you would:
-  // 1. Call a serverless function or backend API that has proper authentication
-  // 2. The backend would use Google Sheets API to append the data
-  // 3. Handle errors and return appropriate status
-  
-  // For demo purposes, we're simulating a network request
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      // Simulate successful save
-      resolve(true);
-    }, 1500);
-  });
+  try {
+    const response = await fetch(WEB_APP_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      mode: 'no-cors',
+      body: JSON.stringify(data),
+    });
+
+    // Since we're using no-cors, we can't check response.ok
+    // Instead, we'll assume success if no error is thrown
+    return true;
+  } catch (error) {
+    console.error('Error saving to Google Sheet:', error);
+    // Store in localStorage as fallback
+    try {
+      const pendingRegistrations = JSON.parse(localStorage.getItem('pendingRegistrations') || '[]');
+      pendingRegistrations.push({
+        ...data,
+        timestamp: new Date().toISOString(),
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+      localStorage.setItem('pendingRegistrations', JSON.stringify(pendingRegistrations));
+    } catch (storageError) {
+      console.error('Failed to store registration in localStorage:', storageError);
+    }
+    return false;
+  }
 };
 
 /**
