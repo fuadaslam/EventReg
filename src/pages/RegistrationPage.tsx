@@ -113,6 +113,12 @@ const RegistrationPage: React.FC = () => {
                     value: /^[0-9+\-() ]+$/,
                     message: "Invalid phone number",
                   },
+                  validate: (value) => {
+                    if (!value) return true;
+                    return (
+                      /^[0-9+\-() ]+$/.test(value) || "Invalid phone number"
+                    );
+                  },
                 })}
               />
               {errors.phone && (
