@@ -13,6 +13,7 @@ const SuccessPage: React.FC = () => {
     height: window.innerHeight,
   });
   const [showConfetti, setShowConfetti] = React.useState(true);
+  const [imageError, setImageError] = React.useState(false);
 
   useEffect(() => {
     // Set confetti timeout
@@ -88,14 +89,28 @@ const SuccessPage: React.FC = () => {
         Thank you for registering for our event. Your badge is ready to share!
       </p>
 
+      {/* Debug: Show badgeImage value */}
+      {!badgeImage && (
+        <div className="mb-4 text-xs text-red-600 break-all w-full text-center">
+          badgeImage is not set or empty.
+        </div>
+      )}
+
       {badgeImage && (
-        <div className="mb-6 sm:mb-8 p-1 sm:p-2 bg-white rounded-lg shadow-md w-full max-w-[90vw] sm:max-w-[280px]">
-          <img
-            src={badgeImage}
-            alt="Your event badge"
-            className="w-full h-auto rounded-md"
-            style={{ maxHeight: "320px", objectFit: "contain" }}
-          />
+        <div className="mb-6 sm:mb-8 p-1 sm:p-2 bg-yellow-100 rounded-lg shadow-md w-full max-w-[95vw] sm:max-w-[280px] border-2 border-dashed border-blue-300 flex items-center justify-center min-h-[120px]">
+          {!imageError ? (
+            <img
+              src={badgeImage}
+              alt="Your event badge"
+              className="w-full h-auto rounded-md"
+              style={{ maxHeight: "320px", objectFit: "contain" }}
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <div className="text-red-500 text-center w-full">
+              Image failed to load
+            </div>
+          )}
         </div>
       )}
 

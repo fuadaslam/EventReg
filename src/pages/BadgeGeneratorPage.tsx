@@ -48,9 +48,24 @@ const BadgeGeneratorPage: React.FC = () => {
     }
   };
 
+  // Utility to wait for all images in a container to load
+  const waitForImagesToLoad = async (container: HTMLElement) => {
+    const images = Array.from(container.getElementsByTagName("img"));
+    await Promise.all(
+      images.map((img) => {
+        if (img.complete && img.naturalHeight !== 0) return Promise.resolve();
+        return new Promise((resolve) => {
+          img.onload = img.onerror = resolve;
+        });
+      })
+    );
+  };
+
   const downloadBadge = async () => {
     if (!badgeRef.current) return;
     try {
+      await waitForImagesToLoad(badgeRef.current); // Wait for images to load
+      await new Promise((res) => setTimeout(res, 100)); // Small delay for rendering
       const dataUrl = await toPng(badgeRef.current, { cacheBust: true });
       saveAs(dataUrl, `event-badge-${registrationData.name}.png`);
     } catch (error) {
@@ -129,10 +144,10 @@ const BadgeGeneratorPage: React.FC = () => {
           /* User photo container */
           .flex.justify-center.mb-6 > div > div > div {
             position: absolute !important;
-            width: 30% !important;
-            height: 35% !important;
-            left: 50% !important;
-            top: 50% !important;
+            width: 28% !important;
+            height: 33% !important;
+            left: 78% !important;
+            top: 52% !important;
             transform: translate(-50%, -50%) !important;
           }
 
