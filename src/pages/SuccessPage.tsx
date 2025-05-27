@@ -68,7 +68,7 @@ const SuccessPage: React.FC = () => {
   };
 
   return (
-    <div className="animate-fade-in flex flex-col items-center justify-center min-h-screen px-2 py-6 sm:px-4 sm:py-8 bg-white">
+    <div className="animate-fade-in flex flex-col items-center justify-center min-h-screen px-4 py-6 sm:px-6 sm:py-8 bg-white">
       {showConfetti && (
         <Confetti
           width={windowSize.width}
@@ -85,11 +85,10 @@ const SuccessPage: React.FC = () => {
       <h1 className="text-xl sm:text-2xl font-bold text-center mb-1 sm:mb-2">
         Registration Complete!
       </h1>
-      <p className="text-neutral-600 text-center mb-6 sm:mb-8 max-w-[90vw] sm:max-w-xs text-sm sm:text-base">
+      <p className="text-neutral-600 text-center mb-6 sm:mb-8 max-w-[90vw] sm:max-w-md text-sm sm:text-base">
         Thank you for registering for our event. Your badge is ready to share!
       </p>
 
-      {/* Debug: Show badgeImage value */}
       {!badgeImage && (
         <div className="mb-4 text-xs text-red-600 break-all w-full text-center">
           badgeImage is not set or empty.
@@ -97,13 +96,12 @@ const SuccessPage: React.FC = () => {
       )}
 
       {badgeImage && (
-        <div className="mb-6 sm:mb-8 p-1 sm:p-2 bg-yellow-100 rounded-lg shadow-md w-full max-w-[95vw] sm:max-w-[280px] border-2 border-dashed border-blue-300 flex items-center justify-center min-h-[120px]">
+        <div className="mb-6 sm:mb-8 w-full max-w-[95vw] sm:max-w-[540px] aspect-[27/31] bg-yellow-50 rounded-lg shadow-md border-2 border-dashed border-blue-300 flex items-center justify-center overflow-hidden">
           {!imageError ? (
             <img
               src={badgeImage}
               alt="Your event badge"
-              className="w-full h-auto rounded-md"
-              style={{ maxHeight: "320px", objectFit: "contain" }}
+              className="w-full h-full object-contain"
               onError={() => setImageError(true)}
             />
           ) : (
@@ -114,30 +112,30 @@ const SuccessPage: React.FC = () => {
         </div>
       )}
 
-      <div className="space-y-2 sm:space-y-3 w-full max-w-[90vw] sm:max-w-[280px]">
+      <div className="space-y-3 w-full max-w-[95vw] sm:max-w-[540px]">
         <button
           onClick={downloadBadge}
-          className="btn-primary w-full flex items-center justify-center py-2 sm:py-3 text-sm sm:text-base"
+          className="btn-primary w-full flex items-center justify-center py-3 text-sm sm:text-base"
           disabled={!badgeImage}
         >
-          <Download className="h-4 w-4 mr-2" />
+          <Download className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
           Download Badge
         </button>
 
         <button
           onClick={shareBadge}
-          className="btn-outline w-full flex items-center justify-center py-2 sm:py-3 text-sm sm:text-base"
+          className="btn-outline w-full flex items-center justify-center py-3 text-sm sm:text-base"
           disabled={!badgeImage}
         >
-          <Share2 className="h-4 w-4 mr-2" />
+          <Share2 className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
           Share on Social Media
         </button>
 
         <button
           onClick={() => navigate("/")}
-          className="btn-outline w-full flex items-center justify-center py-2 sm:py-3 text-sm sm:text-base"
+          className="btn-outline w-full flex items-center justify-center py-3 text-sm sm:text-base"
         >
-          <Home className="h-4 w-4 mr-2" />
+          <Home className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
           Back to Home
         </button>
       </div>

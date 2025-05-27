@@ -8,32 +8,54 @@ interface BadgeTemplateProps {
 const BadgeTemplate: React.FC<BadgeTemplateProps> = ({ photoUrl }) => {
   return (
     <div
-      className="relative rounded-xl shadow-lg"
-      style={{ width: 540, height: 620 }}
+      className="relative rounded-xl shadow-lg w-full max-w-[540px] aspect-[27/31] bg-white overflow-hidden"
+      style={{
+        transform: "none",
+        imageRendering: "crisp-edges",
+        WebkitBackfaceVisibility: "hidden",
+        backfaceVisibility: "hidden",
+      }}
     >
       {/* Event poster background */}
       <img
         src={eventPoster}
         alt="Event Poster"
         className="absolute inset-0 w-full h-full object-cover rounded-xl"
+        style={{
+          pointerEvents: "none",
+          imageRendering: "crisp-edges",
+          WebkitBackfaceVisibility: "hidden",
+          backfaceVisibility: "hidden",
+          transform: "translateZ(0)",
+        }}
         draggable={false}
       />
-      {/* Profile image overlay - adjust these values for perfect fit */}
+      {/* Profile image overlay */}
       <div
-        className="absolute flex items-center justify-center"
+        className="absolute flex items-center justify-center bg-white rounded-[10px] overflow-hidden"
         style={{
-          top: 225, // estimated vertical position
-          left: 360, // move right to fit new width
-          width: 170, // estimated width of the white rectangle
-          height: 200, // estimated height of the white rectangle
-          // boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+          top: "36%",
+          left: "67%",
+          width: "31%",
+          height: "32%",
+          transform: "none",
+          imageRendering: "crisp-edges",
+          WebkitBackfaceVisibility: "hidden",
+          backfaceVisibility: "hidden",
         }}
       >
         <img
           src={photoUrl}
           alt="Profile"
-          className="object-cover"
-          style={{ width: 170, height: 195, borderRadius: 10 }}
+          className="w-full h-full object-cover rounded-[10px]"
+          style={{
+            pointerEvents: "none",
+            imageRendering: "crisp-edges",
+            WebkitBackfaceVisibility: "hidden",
+            backfaceVisibility: "hidden",
+            transform: "translateZ(0)",
+          }}
+          draggable={false}
         />
       </div>
     </div>
