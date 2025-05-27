@@ -4,6 +4,12 @@ import { Check, Download, Share2, Home } from "lucide-react";
 import { useAppContext } from "../context/AppContext";
 import Confetti from "react-confetti";
 import { saveAs } from "file-saver";
+import {
+  SUCCESS_TITLE,
+  SUCCESS_MESSAGE,
+  SHARE_TITLE,
+  SHARE_TEXT,
+} from "../constants/text";
 
 const SuccessPage: React.FC = () => {
   const navigate = useNavigate();
@@ -51,8 +57,8 @@ const SuccessPage: React.FC = () => {
         const file = new File([blob], "event-badge.png", { type: "image/png" });
 
         await navigator.share({
-          title: "My Event Participation Badge",
-          text: "I'm participating in the upcoming event! Check out my badge.",
+          title: SHARE_TITLE,
+          text: SHARE_TEXT,
           files: [file],
         });
       } else {
@@ -83,10 +89,10 @@ const SuccessPage: React.FC = () => {
       </div>
 
       <h1 className="text-xl sm:text-2xl font-bold text-center mb-1 sm:mb-2">
-        Registration Complete!
+        {SUCCESS_TITLE}
       </h1>
       <p className="text-neutral-600 text-center mb-6 sm:mb-8 max-w-[90vw] sm:max-w-md text-sm sm:text-base">
-        Thank you for registering for our event. Your badge is ready to share!
+        {SUCCESS_MESSAGE}
       </p>
 
       {!badgeImage && (
@@ -95,50 +101,49 @@ const SuccessPage: React.FC = () => {
         </div>
       )}
 
-      {badgeImage && (
-        <div className="mb-6 sm:mb-8 w-full max-w-[95vw] sm:max-w-[540px] aspect-[27/31] bg-yellow-50 rounded-lg shadow-md border-2 border-dashed border-blue-300 flex items-center justify-center overflow-hidden">
-          {!imageError ? (
-            <img
-              src={badgeImage}
-              alt="Your event badge"
-              className="w-full h-full object-contain"
-              onError={() => setImageError(true)}
-            />
-          ) : (
-            <div className="text-red-500 text-center w-full">
-              Image failed to load
-            </div>
-          )}
-        </div>
-      )}
+      <div className="w-full max-w-md mb-8">
+        {badgeImage && !imageError && (
+          <img
+            src={badgeImage}
+            alt="Event Badge"
+            className="w-full h-auto rounded-lg shadow-lg"
+            onError={() => setImageError(true)}
+          />
+        )}
+        {imageError && (
+          <div className="text-red-500 text-center p-4 bg-red-50 rounded-lg">
+            Failed to load badge image
+          </div>
+        )}
+      </div>
 
-      <div className="space-y-3 w-full max-w-[95vw] sm:max-w-[540px]">
+      <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
         <button
           onClick={downloadBadge}
-          className="btn-primary w-full flex items-center justify-center py-3 text-sm sm:text-base"
-          disabled={!badgeImage}
+          className="btn-secondary flex-1 py-3 flex items-center justify-center"
+          disabled={!badgeImage || imageError}
         >
-          <Download className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+          <Download className="h-5 w-5 mr-2" />
           Download Badge
         </button>
 
         <button
           onClick={shareBadge}
-          className="btn-outline w-full flex items-center justify-center py-3 text-sm sm:text-base"
-          disabled={!badgeImage}
+          className="btn-primary flex-1 py-3 flex items-center justify-center"
+          disabled={!badgeImage || imageError}
         >
-          <Share2 className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-          Share on Social Media
-        </button>
-
-        <button
-          onClick={() => navigate("/")}
-          className="btn-outline w-full flex items-center justify-center py-3 text-sm sm:text-base"
-        >
-          <Home className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-          Back to Home
+          <Share2 className="h-5 w-5 mr-2" />
+          Share Badge
         </button>
       </div>
+
+      <button
+        onClick={() => navigate("/")}
+        className="mt-6 text-neutral-600 hover:text-neutral-900 flex items-center"
+      >
+        <Home className="h-5 w-5 mr-2" />
+        Return to Home
+      </button>
     </div>
   );
 };

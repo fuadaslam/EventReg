@@ -4,6 +4,14 @@ import { useForm } from "react-hook-form";
 import { useAppContext, UserRegistrationData } from "../context/AppContext";
 import { AlertCircle } from "lucide-react";
 import { saveToGoogleSheet } from "../services/googleSheetService";
+import {
+  REGISTRATION_TITLE,
+  REGISTRATION_SUBTITLE,
+  NAME_LABEL,
+  NAME_PLACEHOLDER,
+  PHONE_LABEL,
+  PHONE_PLACEHOLDER,
+} from "../constants/text";
 
 import OfflineNotice from "../components/OfflineNotice";
 
@@ -70,10 +78,8 @@ const RegistrationPage: React.FC = () => {
   return (
     <div className="animate-fade-in">
       <div className="mb-6 text-center">
-        <h1 className="text-2xl font-bold mb-2">Registration Details</h1>
-        <p className="text-neutral-600">
-          Please fill in your information below
-        </p>
+        <h1 className="text-2xl font-bold mb-2">{REGISTRATION_TITLE}</h1>
+        <p className="text-neutral-600">{REGISTRATION_SUBTITLE}</p>
       </div>
 
       {isOffline && (
@@ -83,12 +89,12 @@ const RegistrationPage: React.FC = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div className="card p-6 space-y-5">
           <div>
-            <label htmlFor="name">Full Name *</label>
+            <label htmlFor="name">{NAME_LABEL}</label>
             <input
               id="name"
               type="text"
               className="input mt-1"
-              placeholder="Your full name"
+              placeholder={NAME_PLACEHOLDER}
               {...register("name", { required: "Name is required" })}
             />
             {errors.name && (
@@ -100,12 +106,12 @@ const RegistrationPage: React.FC = () => {
           </div>
 
           <div>
-            <label htmlFor="phone">Phone Number *</label>
+            <label htmlFor="phone">{PHONE_LABEL}</label>
             <input
               id="phone"
               type="tel"
               className="input mt-1"
-              placeholder="Your phone number"
+              placeholder={PHONE_PLACEHOLDER}
               {...register("phone", {
                 required: "Phone is required",
                 pattern: {
