@@ -67,7 +67,7 @@ const SuccessPage: React.FC = () => {
   };
 
   return (
-    <div className="animate-fade-in flex flex-col items-center justify-center h-full">
+    <div className="animate-fade-in flex flex-col items-center justify-center min-h-screen p-4">
       {showConfetti && (
         <Confetti
           width={windowSize.width}
@@ -89,19 +89,19 @@ const SuccessPage: React.FC = () => {
       </p>
 
       {badgeImage && (
-        <div className="mb-8 p-2 bg-white rounded-lg shadow-md">
+        <div className="mb-8 p-2 bg-white rounded-lg shadow-md w-full max-w-[280px]">
           <img
             src={badgeImage}
             alt="Your event badge"
-            className="w-64 h-auto"
+            className="w-full h-auto"
           />
         </div>
       )}
 
-      <div className="space-y-3 w-full">
+      <div className="space-y-3 w-full max-w-[280px]">
         <button
           onClick={downloadBadge}
-          className="btn-primary w-full flex items-center justify-center"
+          className="btn-primary w-full flex items-center justify-center py-3"
           disabled={!badgeImage}
         >
           <Download className="h-4 w-4 mr-2" />
@@ -110,7 +110,7 @@ const SuccessPage: React.FC = () => {
 
         <button
           onClick={shareBadge}
-          className="btn-outline w-full flex items-center justify-center"
+          className="btn-outline w-full flex items-center justify-center py-3"
           disabled={!badgeImage}
         >
           <Share2 className="h-4 w-4 mr-2" />
@@ -119,7 +119,7 @@ const SuccessPage: React.FC = () => {
 
         <button
           onClick={() => navigate("/")}
-          className="btn-outline w-full flex items-center justify-center"
+          className="btn-outline w-full flex items-center justify-center py-3"
         >
           <Home className="h-4 w-4 mr-2" />
           Back to Home

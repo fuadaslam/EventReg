@@ -93,34 +93,66 @@ const BadgeGeneratorPage: React.FC = () => {
     <>
       <style>{`
         @media (max-width: 640px) {
-          /* Target the badge image and its direct container */
-          #root > div > main > div > div.flex.justify-center.mb-6 > div > div > img,
-          #root > div > main > div > div.flex.justify-center.mb-6 > div > div > div {
-            width: 58% !important;
-            height: 55% !important;
+          /* Container adjustments */
+          .animate-fade-in {
+            padding: 1rem;
           }
-          /* Target the inner div for left/top positioning */
-          #root > div > main > div > div.flex.justify-center.mb-6 > div > div > div {
-            left: 98px !important;
-            top: 8px !important;
+
+          /* Badge container */
+          .flex.justify-center.mb-6 {
+            margin-bottom: 2rem;
+          }
+
+          /* Badge image container */
+          .flex.justify-center.mb-6 > div {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            position: relative;
+          }
+
+          /* Badge template container */
+          .flex.justify-center.mb-6 > div > div {
+            width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 1;
+            position: relative;
+          }
+
+          /* Badge image */
+          .flex.justify-center.mb-6 > div > div > img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain;
+          }
+
+          /* User photo container */
+          .flex.justify-center.mb-6 > div > div > div {
             position: absolute !important;
-            z-index: 1;
+            width: 30% !important;
+            height: 35% !important;
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
           }
-          /* Target the inner image for width/height */
-          #root > div > main > div > div.flex.justify-center.mb-6 > div > div > div > img {
-            width: 93px !important;
-            height: 110px !important;
+
+          /* User photo */
+          .flex.justify-center.mb-6 > div > div > div > img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
           }
-          /* Move the button grid up */
-          #root > div > main > div > div.grid.grid-cols-2.gap-3.mb-6 {
-            margin-top: -283px !important;
-            position: relative;
-            z-index: 2;
+
+          /* Button grid */
+          .grid.grid-cols-2.gap-3.mb-6 {
+            margin-top: 1rem !important;
+            gap: 0.75rem !important;
           }
-          /* Ensure the complete registration button is clickable */
-          #root > div > main > div > button.btn-primary {
-            position: relative;
-            z-index: 2;
+
+          /* Button styles */
+          .btn-outline, .btn-primary {
+            padding: 0.75rem !important;
+            font-size: 0.875rem !important;
           }
         }
       `}</style>
