@@ -99,61 +99,58 @@ const RegistrationPage: React.FC = () => {
             )}
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="phone">Phone Number *</label>
-              <input
-                id="phone"
-                type="tel"
-                className="input mt-1"
-                placeholder="Your phone number"
-                {...register("phone", {
-                  required: "Phone is required",
-                  pattern: {
-                    value: /^[0-9+\-() ]+$/,
-                    message: "Invalid phone number",
-                  },
-                  validate: (value) => {
-                    if (!value) return true;
-                    return (
-                      /^[0-9+\-() ]+$/.test(value) || "Invalid phone number"
-                    );
-                  },
-                })}
-              />
-              {errors.phone && (
-                <p className="mt-1 text-sm text-error-600 flex items-center">
-                  <AlertCircle className="h-3 w-3 mr-1" />
-                  {errors.phone.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label htmlFor="email">Email Address *</label>
-              <input
-                id="email"
-                type="email"
-                className="input mt-1"
-                placeholder="Your email"
-                {...register("email", {
-                  required: "Email is required",
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "Invalid email address",
-                  },
-                })}
-              />
-              {errors.email && (
-                <p className="mt-1 text-sm text-error-600 flex items-center">
-                  <AlertCircle className="h-3 w-3 mr-1" />
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
+          <div>
+            <label htmlFor="phone">Phone Number *</label>
+            <input
+              id="phone"
+              type="tel"
+              className="input mt-1"
+              placeholder="Your phone number"
+              {...register("phone", {
+                required: "Phone is required",
+                pattern: {
+                  value: /^[0-9+\-() ]+$/,
+                  message: "Invalid phone number",
+                },
+                validate: (value) => {
+                  if (!value) return true;
+                  return /^[0-9+\-() ]+$/.test(value) || "Invalid phone number";
+                },
+              })}
+            />
+            {errors.phone && (
+              <p className="mt-1 text-sm text-error-600 flex items-center">
+                <AlertCircle className="h-3 w-3 mr-1" />
+                {errors.phone.message}
+              </p>
+            )}
           </div>
 
+          {/*
           <div>
+            <label htmlFor="email">Email Address *</label>
+            <input
+              id="email"
+              type="email"
+              className="input mt-1"
+              placeholder="Your email"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Invalid email address",
+                },
+              })}
+            />
+            {errors.email && (
+              <p className="mt-1 text-sm text-error-600 flex items-center">
+                <AlertCircle className="h-3 w-3 mr-1" />
+                {errors.email.message}
+              </p>
+            )}
+          </div>
+
+          <div></div>
             <label htmlFor="gender">Gender *</label>
             <select
               id="gender"
@@ -173,6 +170,7 @@ const RegistrationPage: React.FC = () => {
               </p>
             )}
           </div>
+          */}
         </div>
 
         <div className="card p-6 space-y-5">
@@ -189,6 +187,7 @@ const RegistrationPage: React.FC = () => {
             />
           </div>
 
+          {/*
           <div>
             <label htmlFor="locality">Locality *</label>
             <input
@@ -216,6 +215,7 @@ const RegistrationPage: React.FC = () => {
               {...register("area")}
             />
           </div>
+          */}
 
           <div>
             <label htmlFor="panchayat">Panchayat *</label>
@@ -234,6 +234,7 @@ const RegistrationPage: React.FC = () => {
             )}
           </div>
 
+          {/*
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label htmlFor="city">City *</label>
@@ -269,6 +270,7 @@ const RegistrationPage: React.FC = () => {
               )}
             </div>
           </div>
+          */}
         </div>
 
         <button

@@ -67,7 +67,7 @@ const SuccessPage: React.FC = () => {
   };
 
   return (
-    <div className="animate-fade-in flex flex-col items-center justify-center min-h-screen p-4">
+    <div className="animate-fade-in flex flex-col items-center justify-center min-h-screen px-2 py-6 sm:px-4 sm:py-8 bg-white">
       {showConfetti && (
         <Confetti
           width={windowSize.width}
@@ -77,31 +77,32 @@ const SuccessPage: React.FC = () => {
         />
       )}
 
-      <div className="w-16 h-16 rounded-full bg-success-100 flex items-center justify-center mb-6 animate-bounce-light">
-        <Check className="h-8 w-8 text-success-600" />
+      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-success-100 flex items-center justify-center mb-4 sm:mb-6 animate-bounce-light">
+        <Check className="h-7 w-7 sm:h-8 sm:w-8 text-success-600" />
       </div>
 
-      <h1 className="text-2xl font-bold text-center mb-2">
+      <h1 className="text-xl sm:text-2xl font-bold text-center mb-1 sm:mb-2">
         Registration Complete!
       </h1>
-      <p className="text-neutral-600 text-center mb-8 max-w-xs">
+      <p className="text-neutral-600 text-center mb-6 sm:mb-8 max-w-[90vw] sm:max-w-xs text-sm sm:text-base">
         Thank you for registering for our event. Your badge is ready to share!
       </p>
 
       {badgeImage && (
-        <div className="mb-8 p-2 bg-white rounded-lg shadow-md w-full max-w-[280px]">
+        <div className="mb-6 sm:mb-8 p-1 sm:p-2 bg-white rounded-lg shadow-md w-full max-w-[90vw] sm:max-w-[280px]">
           <img
             src={badgeImage}
             alt="Your event badge"
-            className="w-full h-auto"
+            className="w-full h-auto rounded-md"
+            style={{ maxHeight: "320px", objectFit: "contain" }}
           />
         </div>
       )}
 
-      <div className="space-y-3 w-full max-w-[280px]">
+      <div className="space-y-2 sm:space-y-3 w-full max-w-[90vw] sm:max-w-[280px]">
         <button
           onClick={downloadBadge}
-          className="btn-primary w-full flex items-center justify-center py-3"
+          className="btn-primary w-full flex items-center justify-center py-2 sm:py-3 text-sm sm:text-base"
           disabled={!badgeImage}
         >
           <Download className="h-4 w-4 mr-2" />
@@ -110,7 +111,7 @@ const SuccessPage: React.FC = () => {
 
         <button
           onClick={shareBadge}
-          className="btn-outline w-full flex items-center justify-center py-3"
+          className="btn-outline w-full flex items-center justify-center py-2 sm:py-3 text-sm sm:text-base"
           disabled={!badgeImage}
         >
           <Share2 className="h-4 w-4 mr-2" />
@@ -119,7 +120,7 @@ const SuccessPage: React.FC = () => {
 
         <button
           onClick={() => navigate("/")}
-          className="btn-outline w-full flex items-center justify-center py-3"
+          className="btn-outline w-full flex items-center justify-center py-2 sm:py-3 text-sm sm:text-base"
         >
           <Home className="h-4 w-4 mr-2" />
           Back to Home
