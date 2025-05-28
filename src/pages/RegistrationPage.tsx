@@ -183,7 +183,7 @@ const RegistrationPage: React.FC = () => {
           <h2 className="text-lg font-semibold">Address Information</h2>
 
           <div>
-            <label htmlFor="unit">Unit/Apartment</label>
+            <label htmlFor="unit">Unit</label>
             <input
               id="unit"
               type="text"
